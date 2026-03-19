@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
@@ -191,7 +191,7 @@ const TIER_CONFIG = {
   premium: { order: 2, badge: 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400', label: '★ Higher Price' }
 };
 
-export default function GroceryList() {
+function GroceryList() {
   const router = useRouter();
   const { status } = useSession();
   const searchParams = useSearchParams();
@@ -582,5 +582,13 @@ export default function GroceryList() {
         }
       `}</style>
     </div>
+  );
+}
+
+export default function GroceryPage() {
+  return (
+    <Suspense>
+      <GroceryList />
+    </Suspense>
   );
 }
