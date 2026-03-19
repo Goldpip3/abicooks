@@ -76,7 +76,7 @@ function ThemeManager({ children }) {
 
 export default function Providers({ children }) {
   return (
-    <SessionProvider>
+    <SessionProvider session={null} refetchOnWindowFocus={false}>
       <ThemeManager>{children}</ThemeManager>
     </SessionProvider>
   );
