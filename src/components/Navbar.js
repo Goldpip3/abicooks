@@ -2,18 +2,20 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useSession, signOut } from 'next-auth/react';
+import { signOut } from 'next-auth/react';
+import { useAuth } from '@/context/AuthContext';
 
 function Navbar({ darkMode, toggleDarkMode }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { data: session } = useSession();
+  const { session, refresh } = useAuth();
   const user = session?.user;
 
   const isActive = (path) => pathname === path || pathname.startsWith(path + '/') || pathname.startsWith(path + '?');
 
   const handleLogout = async () => {
     await signOut({ redirect: false });
+    refresh();
     router.push('/login');
   };
 

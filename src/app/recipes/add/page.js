@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { useAuth } from '@/context/AuthContext';
 import ImportUrlModal from '@/components/ImportUrlModal';
 import NutritionCalculator from '@/components/NutritionCalculator';
 
@@ -41,7 +41,7 @@ const EMPTY_FORM = {
 
 export default function AddRecipe() {
   const router = useRouter();
-  const { status } = useSession();
+  const { status } = useAuth();
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
   const [showImportModal, setShowImportModal] = useState(false);

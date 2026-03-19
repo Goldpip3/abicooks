@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { useAuth } from '@/context/AuthContext';
 
 const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 const SLOTS = ['Lunch', 'Dinner'];
@@ -262,7 +262,7 @@ function PlanCell({ plan, day, slot, weekStart, onRefresh }) {
 
 export default function Planner() {
   const router = useRouter();
-  const { status } = useSession();
+  const { status } = useAuth();
   const [weekMonday, setWeekMonday] = useState(() => getMondayOfWeek(new Date()));
   const [plans, setPlans] = useState([]);
   const [loading, setLoading] = useState(true);

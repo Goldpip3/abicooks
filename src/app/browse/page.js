@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { useAuth } from '@/context/AuthContext';
 import RecipeCard from '@/components/RecipeCard';
 import FilterBar from '@/components/FilterBar';
 
@@ -30,7 +30,7 @@ function SkeletonCard() {
 
 export default function Browse() {
   const router = useRouter();
-  const { status } = useSession();
+  const { status } = useAuth();
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

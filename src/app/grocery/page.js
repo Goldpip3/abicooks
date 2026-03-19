@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useMemo, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { useAuth } from '@/context/AuthContext';
 
 // ─── Price Map ────────────────────────────────────────────────────────────────
 const PRICE_MAP = {
@@ -193,7 +193,7 @@ const TIER_CONFIG = {
 
 function GroceryList() {
   const router = useRouter();
-  const { status } = useSession();
+  const { status } = useAuth();
   const searchParams = useSearchParams();
   const weekParam = searchParams.get('week');
   const weekStart = weekParam || toISODate(getMondayOfWeek(new Date()));

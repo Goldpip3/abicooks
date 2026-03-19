@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
 
 const CATEGORY_STYLES = {
@@ -25,7 +25,7 @@ function StatCard({ icon, label, value }) {
 export default function RecipeDetail() {
   const { id } = useParams();
   const router = useRouter();
-  const { status } = useSession();
+  const { status } = useAuth();
   const [recipe, setRecipe] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

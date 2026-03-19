@@ -3,12 +3,13 @@
 import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { signIn, useSession } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
+import { useAuth } from '@/context/AuthContext';
 
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { data: session, status } = useSession();
+  const { session, status, refresh } = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -48,6 +49,7 @@ function LoginForm() {
           : result.error
         );
       } else if (result?.ok) {
+        refresh();
         router.push('/browse');
       }
     } catch {

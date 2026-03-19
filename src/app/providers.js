@@ -1,6 +1,6 @@
 'use client';
 
-import { SessionProvider } from 'next-auth/react';
+import { AuthProvider } from '@/context/AuthContext';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
@@ -76,8 +76,8 @@ function ThemeManager({ children }) {
 
 export default function Providers({ children }) {
   return (
-    <SessionProvider session={null} refetchOnWindowFocus={false}>
+    <AuthProvider>
       <ThemeManager>{children}</ThemeManager>
-    </SessionProvider>
+    </AuthProvider>
   );
 }

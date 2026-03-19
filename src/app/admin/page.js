@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { useAuth } from '@/context/AuthContext';
 
 const STATUS_COLORS = {
   pending: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400',
@@ -52,7 +52,7 @@ function UserRow({ user, onApprove, onReject }) {
 
 export default function Admin() {
   const router = useRouter();
-  const { data: session, status } = useSession();
+  const { session, status } = useAuth();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
