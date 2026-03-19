@@ -35,14 +35,10 @@ function ThemeManager({ children }) {
   const toggleDarkMode = () => setDarkMode(prev => !prev);
   const isAuthPage = pathname === '/login' || pathname === '/register';
 
-  if (!mounted) {
-    return <div className="min-h-screen bg-white text-gray-800">{children}</div>;
-  }
-
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-50 transition-colors duration-200">
-      {!isAuthPage && <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />}
-      {isAuthPage && (
+    <div className={mounted ? 'min-h-screen bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-50 transition-colors duration-200' : 'min-h-screen bg-white text-gray-800'}>
+      {mounted && !isAuthPage && <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />}
+      {mounted && isAuthPage && (
         <div className="absolute top-4 right-4 z-50">
           <button
             onClick={toggleDarkMode}
