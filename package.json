@@ -13,7 +13,9 @@
     "next-auth": "^4.24.0",
     "pg": "^8.12.0",
     "bcryptjs": "^2.4.3",
-    "google-auth-library": "^9.0.0"
+    "google-auth-library": "^9.0.0",
+    "@zxing/browser": "^0.1.4",
+    "@zxing/library": "^0.20.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
